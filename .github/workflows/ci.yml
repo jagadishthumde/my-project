@@ -1,0 +1,26 @@
+name: CI Pipeline - Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: List files (debug)
+        run: ls -la
+
+      - name: Grant execute permission
+        run: chmod +x build.sh test.sh
+
+      - name: Run Build
+        run: bash build.sh
+
+      - name: Run Tests
+        run: bash test.sh
